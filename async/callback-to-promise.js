@@ -27,6 +27,13 @@ class UserStorage {
       }, 1000);
     });
   }
+
+  // async 이용해보기
+  async getUserWithRole(user, password) {
+    const id = await this.loginUser(user, password);
+    const role = await this.getRoles(id);
+    return role;
+  }
 }
 
 // 코딩 시작!
@@ -38,3 +45,9 @@ userStorage
   .then(userStorage.getRoles)
   .then((user) => alert(`Hello ${user.name}, you have a ${user.role} role!`))
   .catch(console.log);
+
+// async 이용해보기
+userStorage
+  .getUserWithRole(id, password) //
+  .catch(console.log)
+  .then(console.log);
